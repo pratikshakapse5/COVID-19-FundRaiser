@@ -1,2 +1,2 @@
 # COVID-19-FundRaiser
-Web application for fund raising for COVID-19 pandemic
+Web application - Raising funds for COVID-19 Pandemic
