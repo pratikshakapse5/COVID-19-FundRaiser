@@ -76,7 +76,7 @@ def user_login(request):
                 # Log the user in.
                 login(request,user)
                 # Send the user back to homepage
-                return redirect("/donate")
+                return redirect("/history")
             else:
                 # If account is not active:
                 return HttpResponse("Your account is not active.")
