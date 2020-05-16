@@ -1,0 +1,10 @@
+<!-- templates/home.html -->
+<h1>Django Image Uploading</h1>
+<ul>
+  {% load static %}
+  {% for post in model %}
+   
+    <img src="{ % static {{post.cover.url}} %}">
+	
+  {% endfor %}
+</ul>

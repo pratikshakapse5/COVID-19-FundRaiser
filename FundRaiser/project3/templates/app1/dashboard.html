@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <!--bootstrap includes-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  {% load static %}
+  <link rel="stylesheet" href="{%static 'CSS/project1.css' %}" />
+  <script src="{%static 'JS/project1.js' %}"></script>
+ 
+</head>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.css">
+<script src="https://cdn.jsdelivr.net/chartist.js/latest/chartist.min.js"></script>
+
+<body>
+  {% include "app1/navbar.html" %}
+
+
+<div class="container-fluid">
+<div class="row-fluid">
+<div class="container">
+  <div class="row">
+
+
+  
+  <div class="col-sm">
+      <div class="span3">
+	
+	  <table border="0" class="table table-hover table-dark" >
+	  <h1 style="text-align:center">Statistics<h1>	
+		<tr>
+		<th>Amount Required($)</th>
+		<th>Amount raised($)</th>
+		<th>Amount needed($)</th>
+		</tr>
+		<tr>
+		<td>$ {{raised}}</td>
+		<td>$ {{donated}}</td>
+		<td>$ {{needed}}</td>
+		</tr>
+		</table>
+		<table border="0" class="table table-hover table-dark">
+		<tr>
+		<th>Total Number of donors</th>
+	
+		</tr>
+		<tr>
+		<td>{{count}}</td>
+		</tr>
+		</table>
+
+		<table border="0" class="table table-hover table-dark">
+		<tr>
+		<th>Total Number of donations so far</th>
+	
+		</tr>
+		<tr>
+		<td>{{donations}}</td>
+		</tr>
+		</table>
+
+		</div>
+	  </div>
+	  </div>
+
+
+    <div class="col-sm">
+      <div class="span3">
+		<h2 style="text-align:center">Donation Distribution<h2>
+		<div class="ct-perfect-fourth" id="chart1"></div>
+		
+	<script>
+		var data = {
+		labels: ['Required Funds($)', 'Raised Funds($)'],
+		series: [
+			//Python code coming from views.py to display the completed and pending task numbers
+			{{ raised }}, {{ donated }}
+			]
+		};
+
+		var options = {
+		labelInterpolationFnc: function(value) {
+			return value[0]
+		}
+		};
+
+		var responsiveOptions = [
+		['screen and (min-width: 640px)', {
+			chartPadding: 150,
+			labelOffset: 120,
+			labelDirection: 'explode',
+			labelInterpolationFnc: function(value) {
+			return value;
+			}
+		}],
+		['screen and (min-width: 1024px)', {
+			labelOffset: 1,
+			chartPadding: 40
+		}]
+		];
+		var mychart = new Chartist.Pie('#chart1', data, options, responsiveOptions);
+	</script>
+</div>
+
+    </div>
+
+    
+
+
+
+
+</div>
+
+
+		
+  </div>
+</div>
+
+
+
+
+</div>
+</div>
+</body>
+</html>
+
